@@ -52,7 +52,7 @@ export const FEAR_BY_CAUSE: [string, string][] = [
   ['colpo', 'i rumori secchi alle spalle'], ['fucil', 'i rumori secchi alle spalle'], ['coltell', 'le lame'],
   ['veleno', 'i sapori amari'], ['arsenico', 'i sapori amari'], ['febbre', 'il caldo delle coperte'], ['tifo', 'l\'acqua ferma'],
   ['polmon', 'la nebbia e il fumo'], ['fame', 'le dispense vuote'], ['freddo', 'la neve'], ['assider', 'la neve'],
-  ['cuore', 'gli sforzi improvvisi'], ['treno', 'i fischi di locomotiva'], ['carro', 'le strade in discesa'],
+  ['cuore', 'gli sforzi improvvisi'], ['cardiac', 'gli sforzi improvvisi'], ['apoplett', 'le stanze troppo calde'], ['treno', 'i fischi di locomotiva'], ['carro', 'le strade in discesa'],
   ['impicc', 'i colletti stretti'], ['vecchiaia', 'il silenzio delle case vuote'],
 ];
 export const FEAR_DEFAULT = 'le porte chiuse a chiave';

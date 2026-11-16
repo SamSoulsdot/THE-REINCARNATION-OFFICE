@@ -355,13 +355,24 @@ function frame(px: Px): Px {
 export function drawSeal(size: number, color: number = P.red3, cut = true): Px {
   const px = new Px(size, size);
   const c = (size - 1) / 2;
-  px.ellipse(c, c, c, c, (x, y) => ramp([mul(color, 0.6), color, mul(color, 1.25)], 0.5 + (c - x) / size + (c - y) / size, x, y));
-  for (let a = 0; a < 20; a++) { const t = a * 0.314; px.set(c + Math.cos(t) * (c - 0.5), c + Math.sin(t) * (c - 0.5), mul(color, 0.5)); }
-  const turns = size / 5.2;
-  for (let a = 0; a < turns * 40; a++) {
-    const t = a / 6.4, r = 0.8 + (a / (turns * 40)) * (c - 3);
-    if (cut && Math.abs(((t % (Math.PI * 2)) - 0.9)) < 0.22 && r > c * 0.28) continue;
-    px.set(c + Math.cos(t) * r, c + Math.sin(t) * r, mix(color, P.ink, 0.72));
+  // ceralacca: bordo irregolare, rilievo a bande
+  px.ellipse(c, c, c, c, (x, y) => {
+    const d = Math.hypot(x - c, y - c) / c;
+    const t = 0.55 + (c - x) / (size * 1.4) + (c - y) / (size * 1.4) - (d > 0.82 ? 0.25 : 0);
+    return ramp([mul(color, 0.55), mul(color, 0.8), color, mul(color, 1.2)], t, x, y);
+  });
+  for (let a = 0; a < 48; a++) { const t = (a / 48) * Math.PI * 2; const r = c - 0.5 - (h2(a, 1, 3) > 0.6 ? 1 : 0); px.set(c + Math.cos(t) * r, c + Math.sin(t) * r, mul(color, 0.45)); }
+  // spirale incisa, spessa, con taglio netto
+  const dark = mix(color, P.ink, 0.78), hi = mul(color, 1.35);
+  const maxR = c * 0.72, turns = 2.6, steps = Math.round(size * 7);
+  const w = Math.max(1, size / 26);
+  for (let i = 0; i < steps; i++) {
+    const k = i / steps, t = k * turns * Math.PI * 2, r = 1 + k * maxR;
+    if (cut && k > 0.32 && k < 0.42) continue;
+    const x = c + Math.cos(t) * r, y = c + Math.sin(t) * r;
+    px.ellipse(x, y, w, w, dark);
+    px.set(x - w, y - w, hi, 120);
   }
+  if (cut) { const t0 = 0.37 * turns * Math.PI * 2; const r0 = 1 + 0.37 * maxR; px.line(c + Math.cos(t0) * (r0 - size / 8), c + Math.sin(t0) * (r0 - size / 8), c + Math.cos(t0) * (r0 + size / 8), c + Math.sin(t0) * (r0 + size / 8), dark); }
   return px;
 }

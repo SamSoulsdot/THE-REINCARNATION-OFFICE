@@ -168,7 +168,7 @@ const L_RED = { r: 120, color: 0xff7a5a, flicker: true };
 export const OBJECTS: ObjDef[] = [
   // --- Sala dei Giudizi ---
   { id: 'scrivania7', kind: 'desk_player', x: 11, y: 13, interact: true, light: L_LAMP },
-  { id: 'sedia_anime', kind: 'chair', x: 11, y: 14, solid: false },
+  { id: 'sedia_anime', kind: 'chair', x: 11, y: 14 },
   { id: 'scrivania_bones', kind: 'desk', x: 15, y: 13, interact: true, light: L_LAMP },
   { id: 'sedia_b1', kind: 'chair', x: 15, y: 14, solid: false },
   { id: 'scrivania3', kind: 'desk', x: 19, y: 13, interact: true, light: L_LAMP },

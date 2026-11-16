@@ -1,0 +1,10 @@
+{
+  "name": "The Reincarnation Office",
+  "short_name": "Reincarnation Office",
+  "start_url": "./",
+  "display": "fullscreen",
+  "background_color": "#08070b",
+  "theme_color": "#0b090d",
+  "lang": "it",
+  "icons": [{ "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}
