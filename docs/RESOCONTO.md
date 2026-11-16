@@ -93,7 +93,7 @@ Bug bloccanti trovati e corretti durante i test: il dialogo si bloccava con la v
 - 13 casi curati (1 con 3 varianti), 53 documenti nei casi + 6 documenti d'ambiente, 74 domande di colloquio, 9 sentenze speciali, circa 9.900 parole.
 - 36 template procedurali × 2 verità canoniche, circa 7.800 parole; 44 pattern di eventi di vita.
 - 116 conversazioni ed esami d'ambiente, circa 6.400 parole.
-- 90 voci di diario, 24 collegamenti, 6 misteri, 5 finali con epilogo condizionato (27 righe sulle sorti di anime e personaggi).
+- 90 voci di diario, 24 collegamenti, 6 misteri, 5 finali con epilogo condizionato (28 righe sulle sorti di anime e personaggi).
 - 11 personaggi nel mondo, di cui 8 ricorrenti principali.
 
 ## 6. Durata
