@@ -228,3 +228,22 @@ test('interazioni touch: tocco per camminare e per parlare', async ({ page, isMo
   await finishScene(page);
   await expect(page.getByTestId('btn-act')).toBeVisible();
 });
+
+test('funziona offline dopo il primo caricamento', async ({ page, context, isMobile }) => {
+  test.skip(isMobile, 'verificato sul profilo desktop');
+  await page.goto('/');
+  await expect(page.getByTestId('main-menu')).toBeVisible();
+  await page.evaluate(async () => { await navigator.serviceWorker.ready; });
+  await page.reload();
+  await expect(page.getByTestId('main-menu')).toBeVisible();
+  await page.waitForTimeout(500);
+  await context.setOffline(true);
+  await page.reload();
+  await expect(page.getByTestId('main-menu')).toBeVisible();
+  await page.getByTestId('menu-new').click();
+  await page.getByTestId('player-name').fill('Senza Rete');
+  await page.getByTestId('start-game').click();
+  await page.getByTestId('begin-day').click();
+  await expect(page.locator('canvas.iso-canvas')).toBeVisible();
+  await context.setOffline(false);
+});
