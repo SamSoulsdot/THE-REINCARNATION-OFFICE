@@ -204,10 +204,14 @@ function TopicMenu({ npcId }: { npcId: string }) {
 function SceneBox() {
   const sc = useStore((s) => s.scene)!;
   const advance = useStore((s) => s.advance);
-  const [done, setDone] = useState(false);
-  const [skip, setSkip] = useState(false);
+  // Stato legato alla singola battuta: niente azzeramenti in effetti (che arriverebbero dopo quelli del testo).
+  const [doneKey, setDoneKey] = useState(-1);
+  const [skipKey, setSkipKey] = useState(-1);
+  const done = doneKey === sc.key;
+  const skip = skipKey === sc.key;
+  const setDone = (_v: boolean) => setDoneKey(sc.key);
+  const setSkip = (_v: boolean) => setSkipKey(sc.key);
   const item = sc.item;
-  useEffect(() => { setDone(false); setSkip(false); }, [sc.key]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (item.kind !== 'line') return;

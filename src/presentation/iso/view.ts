@@ -593,6 +593,11 @@ export class IsoView {
 
   // ------------------------------------------------------------------ ciclo
   private stepActor(a: Actor, dt: number, isPlayer: boolean): void {
+    // Durante scene e pannelli il giocatore si ferma: il cammino (e l'interazione in sospeso) riprende dopo.
+    if (isPlayer && a.path.length && !this.cb.canAct()) {
+      if (a.moving) { a.moving = false; a.frame = 0; this.placeActor(a); }
+      return;
+    }
     if (!a.path.length) {
       if (a.moving) { a.moving = false; a.frame = 0; if (!isPlayer && a.spot) a.face = SPOTS[a.spot]?.face ?? a.face; this.placeActor(a); }
       return;
